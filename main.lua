@@ -22,3 +22,7 @@ end
 cartridgeOpen(0,"w")
 openedCartridge:write("hi")
 openedCartridge:close()
+
+cartridgeOpen(1,'w')
+openedCartridge:write('Hi to you, too')
+openedCartridge:close()
