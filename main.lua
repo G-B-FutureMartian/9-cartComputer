@@ -1,28 +1,28 @@
---openedCartridge = io.tmpfile("r")
+require "luaBash.lua"
 
 function cartridgeOpen(cartridge,mode)
-  if opened == true
-    then
-    openedCartridge:close()
-    opened = false
-  end
-  if cartridge == "0"
-    then
-    openedCartridge = io.tmpfile(mode)
-    opened = true
-    print("Cartridge 0 doesn't work right now. Sorry.")
-  end
-  if cartridge == 1
-    then
-      openedCartridge = io.open("1.txt",mode)
-      opened = false
-    end
+	if opened == true
+	then
+		openedCartridge:close()
+		opened = false
+	end
+	if cartridge == 0
+	then
+		cartName = os.tmpname
+		openedCartridge = io.open(tostring(cartName),mode)
+	else
+		openedCartridge = io.open(cartridge .. '.txt',mode)
+	end
+	opened = true
+	return openedCartridge
 end
 
-cartridgeOpen(0,"w")
-openedCartridge:write("hi")
-openedCartridge:close()
+function cartridgeClose(cartridge)
+	openedCartridge:close()
+	opened = false
+end
 
-cartridgeOpen(1,'w')
-openedCartridge:write('Hi to you, too')
-openedCartridge:close()
+cartridgeOpen(1,'r+')
+openedCartridge:write('Hiya!')
+print(openedCartridge:read())
+cartridgeClose(1)
