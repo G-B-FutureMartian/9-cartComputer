@@ -20,9 +20,8 @@ function cartridgeClose(cartridge)
 	opened = false
 end
 
-cart = "2.txt"
+cart = "1"
 cartridgeOpen(cart,"r+")
-dofile("2.txt")
-cart:write("Hi")
---cartridgeClose(cart)
-cart:close()
+--dofile("1.txt")
+openedCartridge:write("Hi")
+cartridgeClose(openedCartridge)
