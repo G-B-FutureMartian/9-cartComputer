@@ -1,5 +1,3 @@
-require "luaBash.lua"
-
 function cartridgeOpen(cartridge,mode)
 	if opened == true
 	then
@@ -18,11 +16,13 @@ function cartridgeOpen(cartridge,mode)
 end
 
 function cartridgeClose(cartridge)
-	openedCartridge:close()
+	cartridge:close()
 	opened = false
 end
 
-cartridgeOpen(1,'r+')
-openedCartridge:write('Hiya!')
-print(openedCartridge:read())
-cartridgeClose(1)
+cart = "2.txt"
+cartridgeOpen(cart,"r+")
+dofile("2.txt")
+cart:write("Hi")
+--cartridgeClose(cart)
+cart:close()
